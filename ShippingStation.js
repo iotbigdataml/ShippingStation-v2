@@ -5,7 +5,7 @@ var app = angular.module("shippingstation", []);
 app.controller("shippingcontroller", ['$scope', '$http', function ($scope, $http) {
 
 // Global url variables
-$scope.server_url="http://ec2-54-198-142-139.compute-1.amazonaws.com:3000/api/";
+$scope.server_url="http://ec2-52-23-195-47.compute-1.amazonaws.com:3000/api";
 $scope.bot_url="http://5170adb2.ngrok.io";
 
 //trips/update/bot/arrival
@@ -14,7 +14,7 @@ setInterval(function () {
 
     $http({
       method: 'GET',
-      url: $scope.server_url+'/orders/loaded'
+      url: $scope.server_url+'/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -25,25 +25,6 @@ setInterval(function () {
 
     })
   }, 1000);
-
-setInterval(function () {
-
-    $http({
-      method: 'GET',
-      url: $scope.server_url+'/orders/cancelled'
-
-    }).then(function successCallback(response) {
-
-      $scope.cancelled = response.data;
-
-    }, function errorCallback(response) {
-
-
-
-    })
-  }, 1000);
-
-
 
 // Function to control bot one
   
