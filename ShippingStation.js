@@ -5,8 +5,8 @@ var app = angular.module("shippingstation", []);
 app.controller("shippingcontroller", ['$scope', '$http', function ($scope, $http) {
 
 // Global url variables
-$scope.server_url="http://ec2-3-90-3-74.compute-1.amazonaws.com:3000/api";
-$scope.bot_url="http://a9766873.ngrok.io";
+$scope.server_url="http://ec2-3-84-43-140.compute-1.amazonaws.com:3000/api";
+$scope.bot_url="http://e192b53e.ngrok.io";
 
 //trips/update/bot/arrival
   
@@ -103,21 +103,27 @@ $scope.stopmaintenencedata = function() {
 };
 
 
-$scope.botstart = function() {
-
-  var parameter = JSON.stringify({ "station": "MAINTENANCE_STOP"});
-  url = $scope.server_url + '/fulfillOrder'
-  $http.post(url, parameter).
-    success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      console.log(data);
-    }).
-    error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
+$scope.botstart = function (){
+  $http.post($scope.server_url+'/fulfillOrder', JSON.stringify()).then(function (response) {
+    $scope.fulfill = response.data;
+    }, function (response) {
+    
     });
 
+
+};
+
+$scope.filterfulfill = function(id,obj) {   
+  alert("Hi");
+  var i;
+  for(i=0;i<obj.length;i++)
+  {
+    if(id == obj[i])
+    return true;
+    else
+    return false;
+  }
+   
 };
 
 
