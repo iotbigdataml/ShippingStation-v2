@@ -51,7 +51,7 @@
           <td>
             
             <div ng-show="fulfilldisp(order.orderID,fulfill.orders)">
-            <button class="large green button groupHeader" ng-show="order.group_by_key">Fulfill</button>
+            <button class="large green button groupHeader" ng-click="fulfillOrder(order.orderID)" ng-show="order.group_by_key">Fulfill</button>
           </div>
           </td>
         </tr>
