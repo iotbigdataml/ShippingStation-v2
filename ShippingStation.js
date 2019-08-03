@@ -7,7 +7,6 @@ app.controller("shippingcontroller", ['$scope', '$http', function ($scope, $http
 // Global url variables
 $scope.server_url="http://ec2-3-84-43-140.compute-1.amazonaws.com:3000/api";
 $scope.bot_url="http://e192b53e.ngrok.io";
-
 //trips/update/bot/arrival
   
 setInterval(function () {
@@ -113,18 +112,22 @@ $scope.botstart = function (){
 
 };
 
-$scope.filterfulfill = function(id,obj) {   
-  alert("Hi");
+$scope.fulfilldisp = function(id,list){
+
+  if(typeof list!="undefined")
+  { var count=0;
   var i;
-  for(i=0;i<obj.length;i++)
+  for(i=0;i<list.length;i++)
   {
-    if(id == obj[i])
-    return true;
-    else
-    return false;
+    if(id==list[i])
+     count++
   }
-   
-};
+  if(count>0)
+  return true;
+  else 
+  return false;
+}else
+return false;}
 
 
 // Function to control bot two
