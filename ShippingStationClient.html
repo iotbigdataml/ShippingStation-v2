@@ -14,8 +14,8 @@
 
 <section>
      <h1 class="table-title">Team 2 - Shipping Station</h1>
-<div class="col-xs-12">
-  <h3 class="table-title">Bot-1</h3>
+<div class="col-xs-6">
+  <h3 class="table-title">Incoming Orders</h3>
    <div>
     <table>
       <thead>
@@ -62,7 +62,51 @@
 
 <!-- Second table listing all cancelled orders -->
 
+<div class="col-xs-6">
+  <h3 class="table-title">Canceled Orders</h3>
+   <div>
+    <table>
+      <thead>
+        <tr>
+          <th style="font-weight:100">OrderID</th>
+          <th style="font-weight:100">ProductID</th>
+          <th style="font-weight:100">Quantity</th>
+          <th style="font-weight:100">Status</th>
+        </tr>
+    </thead>
+  </table>
+</div>
+<div class="tbl-content">
+<table class="table-fill">
+      <tbody class="table-hover">
+        <tr ng-repeat="order in canceled.Orders | groupBy:'orderID'">
+          <td>
+            <span class="groupHeader" ng-show="order.group_by_key">{{order.orderID}}</span>
+          </td>
+          <td>
+            <span class="groupValue" ng-if="order.productID == 1" >Red</span>
+            <span class="groupValue" ng-if="order.productID == 2" >Green</span>
+            <span class="groupValue" ng-if="order.productID == 3" >Blue</span>
+            <span class="groupValue" ng-if="order.productID == 4" >Black</span>
+            <span class="groupValue" ng-if="order.productID == 5" >Yellow</span>
+            <span class="groupValue" ng-if="order.productID == 6" >White</span>
+          </td>
 
+          <td>
+              <span class="groupValue">{{order.qtyOnTrip}}</span>
+          </td>
+          
+          <td>
+            
+            <div ng-show="fulfilldisp(order.orderID,fulfill.orders)">
+            <button class="large green button groupHeader" ng-click="fulfillOrder(order.orderID)" ng-show="order.group_by_key">Canceled</button>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div class="centered">
 

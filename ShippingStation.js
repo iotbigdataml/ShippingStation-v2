@@ -13,11 +13,28 @@ setInterval(function () {
 
     $http({
       method: 'GET',
-      url: $scope.server_url+'/orders/pending'
+      url: $scope.server_url+'/orders/loaded'
 
     }).then(function successCallback(response) {
 
       $scope.loaded = response.data;
+
+    }, function errorCallback(response) {
+
+
+    })
+  }, 1000);
+
+
+  setInterval(function () {
+
+    $http({
+      method: 'GET',
+      url: $scope.server_url+'/orders/cancelled'
+
+    }).then(function successCallback(response) {
+
+      $scope.canceled = response.data;
 
     }, function errorCallback(response) {
 
@@ -113,7 +130,6 @@ $scope.botstart = function (){
 };
 
 $scope.fulfilldisp = function(id,list){
-
   if(typeof list!="undefined")
   { var count=0;
   var i;
@@ -217,12 +233,12 @@ $scope.maintenenceOn = function () {
 
   $scope.fulfillOrder = function (id) {
 
-
     $http({
       method: 'GET',
       url: $scope.server_url+'/markOrderFilled/' + id
 
     }).then(function successCallback(response) {
+    
 
     }, function errorCallback(response) {
 
